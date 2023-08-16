@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
+import 'package:notes_app/constant.dart';
 import 'package:notes_app/notes/models/note.dart';
 import 'package:notes_app/notes/screens/note.dart';
 import 'dart:convert';
@@ -8,8 +9,7 @@ import '../exception.dart';
 
 class noteService {
   Future<void> addNote({required Note note}) async {
-    const url = "https://muhacodesnotesapp.pythonanywhere.com/notes/api/";
-
+    const url = "$AppUrl/notes/";
     final res = await http.post(Uri.parse(url), body: {
       'title': note.title,
       'text': note.note,
@@ -17,7 +17,7 @@ class noteService {
   }
 
   Future<List<Note>> fetchNotes() async {
-    const url = "https://muhacodesnotesapp.pythonanywhere.com/notes/api/";
+    const url = "$AppUrl/notes/";
     final List<Note> _notes = [];
 
     final response = await http.get(Uri.parse(url));
@@ -37,15 +37,13 @@ class noteService {
   }
 
   Future<void> updateNote({required Note note}) async {
-    var url =
-        "https://muhacodesnotesapp.pythonanywhere.com/notes/api/${note.id}/";
+    var url = "$AppUrl/notes/${note.id}/";
     final res = await http
         .put(Uri.parse(url), body: {'title': note.title, 'text': note.note});
   }
 
   Future<void> deleteNote({required Note note}) async {
-    var url =
-        "https://muhacodesnotesapp.pythonanywhere.com/notes/api/${note.id}/";
+    var url = "$AppUrl/notes/${note.id}/";
 
     final res = await http.delete(
       Uri.parse(url),

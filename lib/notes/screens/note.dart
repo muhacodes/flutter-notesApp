@@ -71,13 +71,3 @@ class _NotesAppState extends State<NotesApp> {
     );
   }
 }
-
-//isLoading
-//         ? Center(child: CircularProgressIndicator(),)
-//       : RefreshIndicator(
-//         onRefresh: refresh,
-//         child: ListView.builder(
-//           itemCount: notes.length,
-//           itemBuilder: (ctx, index) => NoteList(note: notes[index],)
-//         ),
-//       ),
